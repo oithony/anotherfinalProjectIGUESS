@@ -1,3 +1,5 @@
+//criar uma outra tela para buscar usuarios e uma outra para livros, colocar um botão para voltar para a tela anterior.
+
 package view;
 import model.UsuarioModel;
 import repository.UsuarioRepository;
@@ -44,6 +46,7 @@ public class TelaCadastroUsuario extends JFrame {
         });
 
         listarButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 List<UsuarioModel> usuarios = UsuarioRepository.getInstance().listar();
