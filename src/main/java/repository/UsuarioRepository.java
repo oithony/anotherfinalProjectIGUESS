@@ -71,10 +71,6 @@ public class UsuarioRepository
         }
     }
 
-    public List<UsuarioModel> listar() {
-
-        return List.of();
-    }
 }
 
 

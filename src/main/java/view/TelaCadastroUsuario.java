@@ -20,7 +20,7 @@ public class TelaCadastroUsuario extends JFrame {
     private JLabel Email;
     private JTextField emailField;
     private JButton salvarButton;
-    private JButton listarButton;
+    private JButton buscarButton;
     private JButton voltarButton;
     private JPanel painelUsuario;
 
@@ -30,6 +30,7 @@ public class TelaCadastroUsuario extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setContentPane(painelUsuario);
         this.setLocationRelativeTo(null);
+
 
         salvarButton.addActionListener(new ActionListener() {
             @Override
@@ -45,23 +46,11 @@ public class TelaCadastroUsuario extends JFrame {
             }
         });
 
-        listarButton.addActionListener(new ActionListener() {
-
+        buscarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<UsuarioModel> usuarios = UsuarioRepository.getInstance().listar();
-                StringBuilder resultado = new StringBuilder();
-
-                for (UsuarioModel usuario : usuarios) {
-                    resultado.append("ID: ").append(usuario.getId())
-                            .append(", Nome: ").append(usuario.getNome())
-                            .append(", Sexo: ").append(usuario.getSexo())
-                            .append(", Celular: ").append(usuario.getCelular())
-                            .append(", E-mail: ").append(usuario.getEmail())
-                            .append("\n");
-                }
-                TextField resultadoArea = new TextField();
-                resultadoArea.setText(resultado.toString());
+                dispose();
+                new TelaBuscaUsuario();
             }
         });
 
