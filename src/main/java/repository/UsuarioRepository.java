@@ -43,7 +43,13 @@ public class UsuarioRepository
     }
 
     public UsuarioModel buscarPorId(Long idUsuario) {
-        return entityManager.find(UsuarioModel.class, idUsuario);
+        UsuarioModel usuario = new UsuarioModel();
+        try{
+            usuario = entityManager.find(UsuarioModel.class,idUsuario);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usuario;
     }
 
     public String atualizar(UsuarioModel usuario) {

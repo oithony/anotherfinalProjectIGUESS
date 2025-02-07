@@ -13,7 +13,8 @@ public class UsuarioController {
         String retornoDaRepository = usuarioRepository.salvar(usuario);
         return retornoDaRepository;
     }
-    public List<UsuarioModel> buscarTodos() throws SQLException{
-        return usuarioRepository.buscarTodos();
-    }
+    //public List<UsuarioModel> buscarporId() throws SQLException{
+    //    return usuarioRepository.buscarPorId();
+    //}
+
 }
