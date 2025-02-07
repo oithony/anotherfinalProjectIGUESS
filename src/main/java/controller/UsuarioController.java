@@ -14,6 +14,6 @@ public class UsuarioController {
         return retornoDaRepository;
     }
     public List<UsuarioModel> buscarTodos() throws SQLException{
-        return usuarioRepository.buscarPorId();
+        return usuarioRepository.buscarTodos();
     }
 }
