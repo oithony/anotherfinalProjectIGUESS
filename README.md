@@ -26,3 +26,19 @@ Este projeto é um exemplo de aplicação CRUD (Create, Read, Update, Delete) ut
    git clone https://github.com/oithony/anotherfinalProjectIGUESS.git
 
 
+### Explicação:
+
+- **Introdução**: Descrição geral sobre o projeto, explicando que ele implementa um CRUD com Hibernate e uma interface gráfica.
+- **Funcionalidades**: Enumeração das funcionalidades principais da aplicação.
+- **Tecnologias Utilizadas**: Lista das tecnologias e bibliotecas utilizadas no desenvolvimento do projeto.
+- **Como Executar**: Passos detalhados de como configurar o ambiente e executar o projeto localmente.
+- **Estrutura do Projeto**: Explicação sobre a estrutura de diretórios e onde os arquivos principais estão localizados.
+- **Exemplo de Uso**: Como usar a aplicação depois de configurada e executada.
+- **Contribuições**: Como outras pessoas podem contribuir para o projeto.
+- **Licença**: A licença usada no projeto, como a MIT.
+
+### Como usar:
+- Substitua `senha` e outros parâmetros específicos de sua configuração no banco de dados conforme necessário.
+- Após configurar tudo corretamente, execute a aplicação e interaja com a interface gráfica para gerenciar usuários e livros.
+
+
