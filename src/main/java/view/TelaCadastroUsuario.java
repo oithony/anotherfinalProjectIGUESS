@@ -4,10 +4,8 @@ package view;
 import model.UsuarioModel;
 import repository.UsuarioRepository;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class TelaCadastroUsuario extends JFrame {
     private JPanel painelCadastro;
@@ -23,7 +21,6 @@ public class TelaCadastroUsuario extends JFrame {
     private JButton buscarButton;
     private JButton voltarButton;
     private JPanel painelUsuario;
-
     public TelaCadastroUsuario() {
         this.setTitle("Tela de Cadastro");
         this.setSize(640, 480);

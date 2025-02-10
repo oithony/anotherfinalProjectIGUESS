@@ -16,6 +16,8 @@ public class LivroModel {
     private String autor;
     private int isbn;
     private int quantidadeExemplares;
+    private Date dataPublicacao;
+
 
     public long getIdLivro() {
         return idLivro;
@@ -57,28 +59,16 @@ public class LivroModel {
         this.quantidadeExemplares = quantidadeExemplares;
     }
 
-    public void setDataPublicacao(Date parse) {
+    public Date getDataPublicacao() {
+        return dataPublicacao;
     }
 
-    public void setQuantidadeDisponivel(int i) {
+    public void setDataPublicacao(Date dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
     }
 
     public void setTema(String text) {
-    }
 
-    public void setIsbn(String text) {
-    }
-
-    public char[] getId() {
-        return new char[0];
-    }
-
-    public char[] getTema() {
-        return new char[0];
-    }
-
-
-    public char[] getQuantidadeDisponivel() {
-        return getQuantidadeDisponivel();
     }
 }
+

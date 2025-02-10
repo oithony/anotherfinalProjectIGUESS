@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TelaBuscaUsuario extends JFrame {
     private JPanel painelPrincipal;
-    private JTextField textField1;
+    private JTextField textFieldBuscar;
     private JTable tableBuscaUsuario;
     private JButton buscarButton;
     private JScrollPane scrollPaneUsuario;
@@ -36,7 +36,7 @@ public class TelaBuscaUsuario extends JFrame {
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                setVisible(false);
                 new TelaCadastroUsuario();
             }
         });
@@ -47,7 +47,47 @@ public class TelaBuscaUsuario extends JFrame {
                 atualizarTabela();
             }
         });
+
+        removerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removerUsuarioSelecionado();
+            }
+        });
     }
+
+    private void removerUsuarioSelecionado() {
+        int selectedRow = tableBuscaUsuario.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um usuário para remover!", "Erro", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+
+        long idUsuario = (long) tableBuscaUsuario.getValueAt(selectedRow, 0);
+
+        try {
+            entityManager.getTransaction().begin();
+            UsuarioModel usuario = entityManager.find(UsuarioModel.class, idUsuario);
+
+            if (usuario != null) {
+                entityManager.remove(usuario);
+                entityManager.getTransaction().commit();
+                JOptionPane.showMessageDialog(this, "Usuário removido com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                atualizarTabela();  // Atualiza a tabela após a remoção
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuário não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            JOptionPane.showMessageDialog(this, "Erro ao remover o usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
+
 
     private void atualizarTabela() {
         List<UsuarioModel> usuarios = buscar();
@@ -61,11 +101,19 @@ public class TelaBuscaUsuario extends JFrame {
     }
 
     public List<UsuarioModel> buscar() {
-        try {
+        String idText = textFieldBuscar.getText();
+        if (idText == null || idText.isEmpty()) {
             return entityManager.createQuery("from UsuarioModel", UsuarioModel.class).getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return List.of();
+        } else {
+            try {
+                long id = Long.parseLong(idText);
+                return entityManager.createQuery("from UsuarioModel u where u.idUsuario = :id", UsuarioModel.class)
+                        .setParameter("id", id)
+                        .getResultList();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Digite um ID válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return List.of();
+            }
         }
     }
 }

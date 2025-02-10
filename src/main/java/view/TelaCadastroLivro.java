@@ -1,12 +1,13 @@
 package view;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
+
 import model.LivroModel;
 import repository.LivroRepository;
 
-import static java.lang.Integer.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TelaCadastroLivro extends JFrame {
     private JPanel painelPrincipal;
@@ -24,9 +25,8 @@ public class TelaCadastroLivro extends JFrame {
     private JTextField dataPublicacaoField;
     private JTextField quantidadeField;
     private JButton salvarButton;
-    private JButton listarButton;
+    private JButton buscarButton;
     private JButton voltarButton;
-
 
     public TelaCadastroLivro(){
         this.setTitle("Gerenciamento de Livros");
@@ -42,43 +42,39 @@ public class TelaCadastroLivro extends JFrame {
                 livro.setTitulo(tituloField.getText());
                 livro.setTema(temaField.getText());
                 livro.setAutor(autorField.getText());
-                livro.setIsbn(isbnField.getText());
-                livro.setQuantidadeDisponivel(parseInt(quantidadeField.getText()));
+                livro.setIsbn(Integer.parseInt(isbnField.getText()));
+                livro.setQuantidadeExemplares(Integer.parseInt(quantidadeField.getText()));
+
 
                 try {
-                    livro.setDataPublicacao(new java.text.SimpleDateFormat("dd/MM/yyyy")
-                            .parse(dataPublicacaoField.getText()));
+                    String dataString = dataPublicacaoField.getText();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    Date dataPublicacao = sdf.parse(dataString);
+                    livro.setDataPublicacao(dataPublicacao);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Data inválida!");
+                    JOptionPane.showMessageDialog(null, "Data inválida! Use o formato dd/MM/yyyy");
                     return;
                 }
+
 
                 LivroRepository.getInstance().salvar(livro);
                 JOptionPane.showMessageDialog(null, "Livro salvo com sucesso!");
             }
         });
-        listarButton.addActionListener(new ActionListener() {
+
+        buscarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<LivroModel> livros = LivroRepository.getInstance().listar();
-                StringBuilder resultado = new StringBuilder();
-
-                for (LivroModel livro : livros) {
-                    resultado.append("ID: ").append(livro.getId())
-                            .append(", Título: ").append(livro.getTitulo())
-                            .append(", Tema: ").append(livro.getTema())
-                            .append(", Autor: ").append(livro.getAutor())
-                            .append(", ISBN: ").append(livro.getIsbn())
-                            .append(", Disponíveis: ").append(livro.getQuantidadeDisponivel())
-                            .append("\n");
-                }
+                dispose();
+                new TelaBuscaLivro();
             }
         });
+
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               dispose();
-               new Principal();
+                dispose();
+                new Principal();
             }
         });
     }
