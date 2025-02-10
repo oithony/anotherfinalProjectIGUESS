@@ -37,7 +37,7 @@ public class TelaBuscaUsuario extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new TelaCadastroUsuario();
+                new TelaCadastroUsuario().setVisible(true);
             }
         });
 
