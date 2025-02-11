@@ -1,6 +1,6 @@
-//criar uma outra tela para buscar usuarios e uma outra para livros, colocar um botão para voltar para a tela anterior.
 
 package view;
+
 import model.UsuarioModel;
 import repository.UsuarioRepository;
 import javax.swing.*;
@@ -21,12 +21,17 @@ public class TelaCadastroUsuario extends JFrame {
     private JButton buscarButton;
     private JButton voltarButton;
     private JPanel painelUsuario;
+    public Styles styles = new Styles();
+
     public TelaCadastroUsuario() {
         this.setTitle("Tela de Cadastro");
         this.setSize(640, 480);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setContentPane(painelUsuario);
         this.setLocationRelativeTo(null);
+        styles.StyleButton(salvarButton);
+        styles.StyleButton(buscarButton);
+        styles.StyleButton(voltarButton);
 
 
         salvarButton.addActionListener(new ActionListener() {

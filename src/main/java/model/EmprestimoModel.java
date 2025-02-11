@@ -13,59 +13,47 @@ public class EmprestimoModel {
     private UsuarioModel usuario;
     @ManyToOne
     private LivroModel livro;
-    private String dataEmprestimo;
-    private String dataDevolucaoPrevista;
-    private String dataDevolucao;
+    @Temporal(TemporalType.DATE)
+    private Date dataEmprestimo;
+
+    @Temporal(TemporalType.DATE)
+    private Date dataDevolucaoPrevista;
+
+    @Temporal(TemporalType.DATE)
+    private Date dataDevolucao;
 
     public long getIdEmprestimo() {
         return idEmprestimo;
     }
 
-    public void setIdEmprestimo(long idEmprestimo) {
-        this.idEmprestimo = idEmprestimo;
-    }
-
-    public UsuarioModel getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioModel usuario) {
-        this.usuario = usuario;
-    }
-
-    public LivroModel getLivro() {
-        return livro;
-    }
-
-    public void setLivro(LivroModel livro) {
-        this.livro = livro;
-    }
-
-    public String getDataEmprestimo() {
+    public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(String dataEmprestimo) {
+    public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public String getDataDevolucaoPrevista() {
+    public Date getDataDevolucaoPrevista() {
         return dataDevolucaoPrevista;
     }
 
-    public void setDataDevolucaoPrevista(String dataDevolucaoPrevista) {
+    public void setDataDevolucaoPrevista(Date dataDevolucaoPrevista) {
         this.dataDevolucaoPrevista = dataDevolucaoPrevista;
     }
 
-    public String getDataDevolucao() {
+    public Date getDataDevolucao() {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(String dataDevolucao) {
+    public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
-    public void setDataEmprestimo(Date date) {
-        
+    public void setUsuario(UsuarioModel usuario) {
+
+    }
+
+    public void setLivro(LivroModel livro) {
     }
 }

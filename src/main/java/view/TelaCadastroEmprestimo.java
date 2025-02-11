@@ -34,12 +34,17 @@ public class TelaCadastroEmprestimo extends JFrame {
         this.setContentPane(painelEmprestimo);
         this.setLocationRelativeTo(null);
 
-       /* emprestarButton.addActionListener(new ActionListener() {
+       emprestarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    UsuarioRepository usuarioRepository = new UsuarioRepository();
+                    LivroRepository livroRepository = new LivroRepository();
+                    EmprestimoRepository emprestimoRepository = new EmprestimoRepository();
+
                     Long idUsuario = Long.parseLong(idUsuarioField.getText());
                     Long idLivro = Long.parseLong(idLivroField.getText());
+
                     UsuarioModel usuario = UsuarioRepository.getInstance().buscarPorId(idUsuario);
                     LivroModel livro = LivroRepository.getInstance().buscarPorId(idLivro);
 
@@ -48,7 +53,7 @@ public class TelaCadastroEmprestimo extends JFrame {
                         return;
                     }
 
-                    if (livro.getQuantidadeDisponivel() <= 0) {
+                    if (livro.getQuantidadeExemplares() <= 0) {
                         JOptionPane.showMessageDialog(null, "Livro indisponível!");
                         return;
                     }
@@ -58,19 +63,26 @@ public class TelaCadastroEmprestimo extends JFrame {
                     emprestimo.setLivro(livro);
                     emprestimo.setDataEmprestimo(new Date());
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    emprestimo.setDataDevolucaoPrevista(sdf.parse(dataDevolucaoField.getText()));
+                    try {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        sdf.setLenient(false); // Impede datas inválidas
+                        Date dataDevolucao = sdf.parse(dataDevolucaoField.getText());
+                        emprestimo.setDataDevolucaoPrevista(dataDevolucao);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Formato de data inválido! Use dd/MM/yyyy");
+                        return;
+                    }
 
-                    EmprestimoRepository.getInstance().salvar(emprestimo);
-                    livro.setQuantidadeDisponivel(livro.getQuantidadeDisponivel() - 1);
-                    LivroRepository.getInstance().atualizar(livro);
+                    emprestimoRepository.salvar(emprestimo);
+                    livro.setQuantidadeExemplares(livro.getQuantidadeExemplares() - 1);
+                    livroRepository.atualizar(livro);
 
                     JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Erro ao realizar empréstimo: " + ex.getMessage());
                 }
             }
-        });*/
+       });
 
         devolverButton.addActionListener(new ActionListener() {
             @Override

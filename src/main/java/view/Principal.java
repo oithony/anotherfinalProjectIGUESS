@@ -1,8 +1,12 @@
 package view;
 
+import view.Styles;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 
 public class Principal extends JFrame{
     private JButton livrosButton;
@@ -10,12 +14,17 @@ public class Principal extends JFrame{
     private JButton emprestimosButton;
     private JPanel painelPrincipal;
 
+    public Styles styles = new Styles();
+
     public Principal(){
         this.setTitle("Sistema Bibliotecário - IFMS");
         this.setSize(640,480);
         this.setContentPane(painelPrincipal);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        styles.StyleButton(livrosButton);
+        styles.StyleButton(usuariosButton);
+        styles.StyleButton(emprestimosButton);
         this.setVisible(true);
         livrosButton.addActionListener(new ActionListener() {
             @Override
@@ -43,6 +52,8 @@ public class Principal extends JFrame{
         });
 
     }
+
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

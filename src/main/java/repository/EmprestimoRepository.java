@@ -10,7 +10,7 @@ public class EmprestimoRepository {
     private static EmprestimoRepository instance;
     private EntityManager entityManager;
 
-    private EmprestimoRepository() {
+    public EmprestimoRepository() {
         entityManager = getEntityManager();
     }
 
