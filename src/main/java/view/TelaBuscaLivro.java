@@ -1,7 +1,7 @@
 package view;
 
 import model.LivroModel;
-import repository.UsuarioRepository;
+import repository.LivroRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,10 +21,10 @@ public class TelaBuscaLivro extends JFrame{
     private JScrollPane scrollPaneLivro;
     private JTable tableBuscaLivro;
     private JPanel painelPrincipal;
-
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("crudHibernatePU");
     private EntityManager entityManager = emf.createEntityManager();
-    private UsuarioRepository usuarioRepository = new UsuarioRepository();
+    private LivroRepository livroRepository = new LivroRepository();
+    public Styles styles = new Styles();
 
     public TelaBuscaLivro(){
         this.setTitle("Tela de Busca de Livro: ");
@@ -32,13 +32,17 @@ public class TelaBuscaLivro extends JFrame{
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setContentPane(painelPrincipal);
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        styles.StyleTextField(textFieldBuscar);
+        styles.StyleButton(buscarButton);
+        styles.StyleButton(removerButton);
+        styles.StyleButton(voltarButton);
 
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new TelaCadastroLivro().setVisible(true);
                 setVisible(false);
-                new TelaCadastroLivro();
+
             }
         });
 
@@ -55,7 +59,7 @@ public class TelaBuscaLivro extends JFrame{
                 removerLivro();
             }
         });
-
+        this.setVisible(true);
     }
 
     private void removerLivro() {
@@ -135,3 +139,4 @@ public class TelaBuscaLivro extends JFrame{
         }
     }
 }
+

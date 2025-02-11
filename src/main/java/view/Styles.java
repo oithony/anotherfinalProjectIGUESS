@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
@@ -36,5 +37,14 @@ public class Styles {
                 g2.dispose();
             }
         });
+    }
+
+    public void StyleTextField(JTextField textField){
+        textField.setPreferredSize(new Dimension(150, 30));
+        textField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY, 1),
+                BorderFactory.createEmptyBorder(5,5,5,5)
+        ));
+        textField.setFont(new Font("Segoe UI", Font.BOLD, 16));
     }
 }

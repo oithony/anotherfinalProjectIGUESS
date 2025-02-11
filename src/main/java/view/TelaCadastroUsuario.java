@@ -1,6 +1,5 @@
 
 package view;
-
 import model.UsuarioModel;
 import repository.UsuarioRepository;
 import javax.swing.*;
@@ -32,7 +31,10 @@ public class TelaCadastroUsuario extends JFrame {
         styles.StyleButton(salvarButton);
         styles.StyleButton(buscarButton);
         styles.StyleButton(voltarButton);
-
+        styles.StyleTextField(nomeField);
+        styles.StyleTextField(sexoField);
+        styles.StyleTextField(celularField);
+        styles.StyleTextField(emailField);
 
         salvarButton.addActionListener(new ActionListener() {
             @Override

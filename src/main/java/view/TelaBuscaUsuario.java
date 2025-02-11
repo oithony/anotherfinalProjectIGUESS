@@ -20,11 +20,11 @@ public class TelaBuscaUsuario extends JFrame {
     private JScrollPane scrollPaneUsuario;
     private JButton voltarButton;
     private JButton removerButton;
-
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("crudHibernatePU");
     private EntityManager entityManager = emf.createEntityManager();
     private UsuarioRepository usuarioRepository = new UsuarioRepository();
 
+    public Styles styles = new Styles();
     public TelaBuscaUsuario() {
         this.setTitle("Tela de Busca de Usuário");
         this.setSize(640, 480);
@@ -32,6 +32,10 @@ public class TelaBuscaUsuario extends JFrame {
         this.setContentPane(painelPrincipal);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        styles.StyleButton(voltarButton);
+        styles.StyleButton(buscarButton);
+        styles.StyleButton(removerButton);
+        styles.StyleTextField(textFieldBuscar);
 
         voltarButton.addActionListener(new ActionListener() {
             @Override

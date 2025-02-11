@@ -6,6 +6,5 @@ public class Main {
 //MenuPrincipalView menuPrincipalView = new MenuPrincipalView();
  //menuPrincipalView.menuInicial();
         new Principal();
-
     }
 }

@@ -26,6 +26,11 @@ public class TelaCadastroEmprestimo extends JFrame {
     private JButton voltarButton;
     private JButton emprestarButton;
     private JButton devolverButton;
+    private JTable table1;
+    private JTable table2;
+    private JScrollPane scrollPaneUsuario;
+    private JScrollPane scrollPaneLivro;
+    public Styles styles = new Styles();
 
     public TelaCadastroEmprestimo() {
         this.setTitle("Gerenciamento de Empréstimos");
@@ -33,8 +38,12 @@ public class TelaCadastroEmprestimo extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setContentPane(painelEmprestimo);
         this.setLocationRelativeTo(null);
+        styles.StyleButton(emprestarButton);
+        styles.StyleButton(devolverButton);
+        styles.StyleButton(voltarButton);
 
-       emprestarButton.addActionListener(new ActionListener() {
+
+        emprestarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {

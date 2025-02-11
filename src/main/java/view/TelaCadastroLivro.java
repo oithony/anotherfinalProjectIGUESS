@@ -27,6 +27,8 @@ public class TelaCadastroLivro extends JFrame {
     private JButton salvarButton;
     private JButton buscarButton;
     private JButton voltarButton;
+    public Styles styles = new Styles();
+
 
     public TelaCadastroLivro(){
         this.setTitle("Gerenciamento de Livros");
@@ -34,6 +36,9 @@ public class TelaCadastroLivro extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setContentPane(painelPrincipal);
         this.setLocationRelativeTo(null);
+        styles.StyleButton(salvarButton);
+        styles.StyleButton(buscarButton);
+        styles.StyleButton(voltarButton);
 
         salvarButton.addActionListener(new ActionListener() {
             @Override

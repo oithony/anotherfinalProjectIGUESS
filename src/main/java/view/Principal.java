@@ -1,18 +1,15 @@
 package view;
 
-import view.Styles;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.RoundRectangle2D;
 
 public class Principal extends JFrame{
     private JButton livrosButton;
     private JButton usuariosButton;
     private JButton emprestimosButton;
     private JPanel painelPrincipal;
+    private JButton sairButton;
 
     public Styles styles = new Styles();
 
@@ -25,6 +22,7 @@ public class Principal extends JFrame{
         styles.StyleButton(livrosButton);
         styles.StyleButton(usuariosButton);
         styles.StyleButton(emprestimosButton);
+        styles.StyleButton(sairButton);
         this.setVisible(true);
         livrosButton.addActionListener(new ActionListener() {
             @Override
@@ -47,6 +45,13 @@ public class Principal extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new TelaCadastroEmprestimo().setVisible(true);
+                dispose();
+            }
+        });
+
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
